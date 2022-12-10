@@ -36,6 +36,7 @@
 					</nav>
 				</div>
 			</div>
+			<hr>
 		</header>
 		<!-- Header End -->
 
@@ -45,8 +46,17 @@
 				<div class="row align-items-center">
 					<div class="chart-content">
 						<div class="chart-option justify-content-between">
-							<div class="ticker">
-								<h4>005930</h4>
+							<div id="legend">
+								<div class="legend-content">
+									<h2 id="ticker">005930</h2>
+									<h4 id="date"></h4>
+								</div>
+								<ul>
+									<li><span id="open"></span></li>
+									<li><span id="high"></span></li>
+									<li><span id="low"></span></li>
+									<li><span id="close"></span></li>
+								</ul>
 							</div>
 							<div class="timeframe">
 								<h4>Timeframe:</h4>
@@ -59,8 +69,9 @@
 							</div>
 
 						</div>
-						<div id="lightweight">
-
+						<div class="chart-graph">
+							<div id="lightweight">
+							</div>
 						</div>
 					</div>
 				</div>

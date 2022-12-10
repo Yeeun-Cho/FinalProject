@@ -71,7 +71,7 @@ def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.
     
     period1 = convert_to_unix(period1)
     period2 = convert_to_unix(period2)
-    print(ticker, period1, period2)
+    
     with requests.session():
         url = 'https://query1.finance.yahoo.com/v7/finance/download/' \
               '{ticker}?period1={period1}&period2={period2}&interval={interval}' \
@@ -81,8 +81,11 @@ def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.
         return website.text.split('\n')[1:-1]  # not include 0: Date,Open,High,Low,Close,AdjClose,Volume
 
 def modifyStock(string):
-    print(string)
     date, open, high, low, close = string.split(',')[:5]
+    open = int(float(open))
+    high = int(float(high))
+    low = int(float(low))
+    close = int(float(close))
     return {'time': date, 'open': open, 'high': high, 'low': low, 'close': close}
 
 # stock = StockTicker()

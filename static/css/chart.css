@@ -4,6 +4,8 @@
 body {
 	margin: 0;
 	line-height: 1.5;
+	background-color: black;
+	opacity: 0.9;
 }
 
 body, input, textarea, button {
@@ -120,31 +122,14 @@ body, input, textarea, button {
 }
 
 .chart-section {
-	min-height: 100vh;
-	position: relative;
-	z-index: 1;
-}
-
-.chart-section:before {
-	content: "";
-	position: absolute;
-	box-sizing: border-box;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	background-color: black;
-	opacity: 0.9;
-	z-index: -1;
 }
 
 .chart-section .row {
-	min-height: 100vh;
 }
 
 .chart-section .chart-content {
 	/* background-color: red; */
-	margin-top: 10px;
+	margin-top: 100px;
 	font-family: 'Oswald', sans-sans-serif;
 	flex: 0 0 100%;
 	max-width: 100%;
@@ -154,6 +139,27 @@ body, input, textarea, button {
 .chart-section .chart-option {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.chart-section .chart-option #legend {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.chart-section .chart-option #legend .legend-content {
+	width: 100px;
+	margin-right: 5px;
+}
+
+.chart-section .chart-option #legend ul li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.chart-section .chart-option #legend ul li span {
+	text-decoration: none;
+	padding: 25px 0;
+	transition: all 0.5s ease;
 }
 
 .chart-section .chart-option .timeframe {
@@ -183,4 +189,16 @@ body, input, textarea, button {
 
 .chart-section .timeframe ul li .selected {
     font-weight: 900;
+}
+
+.chart-section .chart-graph {
+	margin-top: 20px;
+}
+
+.chart-section .chart-graph #lightweight {
+	margin: 0 auto;
+	max-width: 1000px;
+	max-height: 500px;
+	width: 1000px;
+	height: 500px;
 }
