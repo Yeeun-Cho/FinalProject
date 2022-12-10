@@ -25,11 +25,11 @@ $(document).ready(function() {
 
 function graphTicker(ticker) {
     $.ajax({
-        type : 'get',
+        type : 'post',
         url : '/stock',          
         dataType : 'json',
         data : {
-          "ticker" : ticker,
+          "ticker" : ticker + '.KS',
         },
         success : function(result) { // 결과 성공 콜백함수
             console.log(result);

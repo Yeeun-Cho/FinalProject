@@ -33,11 +33,23 @@ def _get_crumbs_and_cookies(ticker):
                    }
         
         website = requests.get(url, headers=header)
-        soup = BeautifulSoup(website.text, 'lxml')
-        crumb = re.findall('"CrumbStore":{"crumb":"(.+?)"}', str(soup))
 
-        return (header, crumb[0], website.cookies)
+        return (header, website.cookies)
+
+
+def convert_to_unix(date):
+    """
+    converts date to unix timestamp
     
+    parameters: date - in format (dd-mm-yyyy)
+    
+    returns integer unix timestamp
+    """
+    datum = datetime.strptime(date, '%Y-%m-%d')
+    
+    return int(mktime(datum.timetuple()))
+
+  
 
 def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.today().strftime('%Y-%m-%d')):
     """
@@ -55,17 +67,24 @@ def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.
     returns a list of comma seperated value lines
     """
     
-    header, crumb, cookies = _get_crumbs_and_cookies(ticker)
+    header, cookies = _get_crumbs_and_cookies(ticker)
     
+    period1 = convert_to_unix(period1)
+    period2 = convert_to_unix(period2)
+    print(ticker, period1, period2)
     with requests.session():
         url = 'https://query1.finance.yahoo.com/v7/finance/download/' \
-              '{stock}?period1={period1}&period2={period2}&interval={interval}&events=history&crumb={crumb}' \
-              .format(stock=ticker, period1=period1, period2=period2, interval=interval, crumb=crumb)
+              '{ticker}?period1={period1}&period2={period2}&interval={interval}' \
+              .format(ticker=ticker, period1=period1, period2=period2, interval=interval)
                 
         website = requests.get(url, headers=header, cookies=cookies)
-       
-        return website.text.split('\n')[:-1]
-    
+        return website.text.split('\n')[1:-1]  # not include 0: Date,Open,High,Low,Close,AdjClose,Volume
+
+def modifyStock(string):
+    print(string)
+    date, open, high, low, close = string.split(',')[:5]
+    return {'time': date, 'open': open, 'high': high, 'low': low, 'close': close}
+
 # stock = StockTicker()
 # kospi_ticker = stock.get_market_ticker_list(market='KOSPI')
 # kosdaq_ticker = stock.get_market_ticker_list(market='KOSDAQ')
@@ -83,14 +102,13 @@ def home():
 def chart():
     return render_template('chart.html')
 
-@app.route('/stock', methods=['GET'])
+@app.route('/stock', methods=['post'])
 def stockData():
-    today = datetime.today().strftime('%Y-%m-%d')
     ticker = request.form.get('ticker')
-    df = load_csv_data(f'{ticker}.KS')
+    stock = load_csv_data(ticker)
     # df = stock.get_market_ohlcv(ticker, fromdate='1990-01-01', todate=today)
-    print(df)
-    doc = {'ticker': ticker}
+    stock = list(map(modifyStock, stock))
+    doc = {'stock': stock}
     return jsonify(doc)
     
 if __name__ == '__main__':
