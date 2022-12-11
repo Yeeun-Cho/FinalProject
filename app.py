@@ -81,12 +81,13 @@ def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.
         return website.text.split('\n')[1:-1]  # not include 0: Date,Open,High,Low,Close,AdjClose,Volume
 
 def modifyStock(string):
-    date, open, high, low, close = string.split(',')[:5]
+    date, open, high, low, close, _, volume = string.split(',')
     open = int(float(open))
     high = int(float(high))
     low = int(float(low))
     close = int(float(close))
-    return {'time': date, 'open': open, 'high': high, 'low': low, 'close': close}
+    volume = int(float(volume))
+    return {'time': date, 'open': open, 'high': high, 'low': low, 'close': close, 'value': volume}
 
 # stock = StockTicker()
 # kospi_ticker = stock.get_market_ticker_list(market='KOSPI')

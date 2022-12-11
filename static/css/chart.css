@@ -122,6 +122,7 @@ body, input, textarea, button {
 }
 
 .chart-section {
+	margin-bottom: 20px;
 }
 
 .chart-section .row {
