@@ -1,19 +1,9 @@
-import os
-import sys
-from bs4 import BeautifulSoup 
 from datetime import datetime
-import re  
 from time import mktime  
 from flask import Flask, render_template, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-# from pykrx.website.krx.market.ticker import StockTicker
-import pandas as pd
-import numpy as np
-import time
 import requests
 # import exchange_calendars as xcals
-from datetime import datetime, timedelta
-import json
+from datetime import datetime
 from stock import searchStock, allStockInfo
 
 app = Flask(__name__)
@@ -87,16 +77,28 @@ def load_csv_data(ticker, interval='1d', period1='1990-01-01', period2=datetime.
 
 def modifyStock(string):
     date, open, high, low, close, _, volume = string.split(',')
-    open = int(float(open))
+    try:
+        open = int(float(open))
+    except ValueError:
+        print(string)
+        exit()
+        
     high = int(float(high))
     low = int(float(low))
     close = int(float(close))
     volume = int(float(volume))
     return {'time': date, 'open': open, 'high': high, 'low': low, 'close': close, 'value': volume}
 
-# stock = StockTicker()
-# kospi_ticker = stock.get_market_ticker_list(market='KOSPI')
-# kosdaq_ticker = stock.get_market_ticker_list(market='KOSDAQ')
+
+def nullCheck(string):
+    data = string.split(',')
+    if 'null' in data:
+        return False
+    elif float(data[-1]) == 0:
+        return False
+    else:
+        return True
+    
 
 ## HTML 화면 보여주기
 @app.route('/')
@@ -114,8 +116,11 @@ def chart():
 @app.route('/stock', methods=['post'])
 def stockData():
     ticker = request.form.get('ticker')
-    stock = load_csv_data(ticker)
+    timeframe = request.form.get('timeframe')
+    stock = load_csv_data(ticker, interval=timeframe)
+    print(stock, timeframe)
     # df = stock.get_market_ohlcv(ticker, fromdate='1990-01-01', todate=today)
+    stock = list(filter(nullCheck, stock))
     stock = list(map(modifyStock, stock))
     doc = {'stock': stock}
     return jsonify(doc)

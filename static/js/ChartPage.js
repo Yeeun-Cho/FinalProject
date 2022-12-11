@@ -34,23 +34,34 @@ const candlestickSeries = chart.addCandlestickSeries({upColor: '#26a69a', downCo
 
 const legend = document.getElementById('legend');
 
+var ticker;
 $(document).ready(function() {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString);
-    const ticker = urlParams.get('ticker')
+    ticker = urlParams.get('ticker')
     var tickerLegend = document.getElementById('ticker')
     tickerLegend.innerText = ticker
-    graphTicker(ticker)
+    graphTicker(ticker, '1d')
 });
 
+$('.timeframe span').on('click', function() {
+    var before = $('.selected')
+    var timeframe = $(this).attr('id')
+    if (before.attr('id') !== timeframe) {
+        before.removeClass('selected')
+        $(this).addClass('selected')
+        graphTicker(ticker, timeframe)
+    }
+})
 
-function graphTicker(ticker) {
+function graphTicker(ticker, timeframe) {
     $.ajax({
         type : 'post',
         url : '/stock',
         dataType : 'json',
         data : {
-          "ticker" : ticker + '.KS',
+          "ticker" : ticker,
+          "timeframe": timeframe,
         },
         success : function(result) { // success callback
             stock = result['stock'];

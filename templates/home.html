@@ -13,6 +13,7 @@
 			<div class="row justify-content-between align-items-center">
 				<div class="brand-name">
 					<a href="home.html">KRXView.</a>
+					<p>Beta 1.0.0</p>
 				</div>
 				<!-- Search -->
 				<div class="search-stock row align-items-center">
@@ -23,6 +24,7 @@
 						<form>
 							<input type="text" placeholder="Search ticker, company or profile" class="search" autocomplete="off" autocorrect="off" autocapitalize="off" value="">
 						</form>
+						<!-- Suggest Ticker or Company Name -->
 						<table class="suggestions-box">
 							<thead>
 								<tr>
@@ -37,12 +39,12 @@
 				</div>
 				<nav class="nav">
 					<ul>
-						<li><a href="#home-section">Home</a></li>
-						<li><a href="#about-section">About</a></li>
-						<li><a href="#">Market</a></li>
-						<li><a href="chart?ticker=005930">Chart</a></li>
-						<li><a href="#">Screener</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="/#home-section">Home</a></li>
+						<li><a href="/#about-section">About</a></li>
+						<!-- <li><a href="#">Market</a></li> -->
+						<li><a href="chart?ticker=005930.KS">Chart</a></li>
+						<!-- <li><a href="#">Screener</a></li> -->
+						<li><a href="/#contact-section">Contact</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -51,7 +53,7 @@
 	<!-- Header End -->
 
 	<!-- Home Section Start -->
-	<section class="home-section">
+	<section class="home-section" id="home-section">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="home-content">
@@ -72,10 +74,96 @@
 	<!-- Home Section End -->
 
 	<!-- About Section Start -->
-	<section class="about-section">
+	<section class="about-section" id="about-section">
+		<div class="container">
+			<div class="row">
+				<div class="about-img">
+					<div class="img-box">
+						<img src="{{ url_for('static', filename='img/chartPage.png') }}" alt="about me">
+					</div>
+				</div>
+				<div class="about-content">
+					<div class="row">
+						<div class="section-title">
+							<h1>About Website</h1>
+						</div>
+					</div>
+					<p> This Website provides you Candlestick Charts of Korea Stock.</p>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!-- About Section End -->
+	<hr>
+	<!-- Contact Section Start -->
+	<section class="contact-section" id="contact-section">
+		<div class="container">
+			<div class="row">
+				<div class="section-title">
+					<h1>Contact Me</h1>
+				</div>
+			</div>
+			<div class="row">
+	        	<div class="contact-form">
+	        		<form class="form">
+	        			<div class="row">
+	        				<div class="left input-group">
+	        					<label>Name</label>
+	        					<input type="text" placeholder="Your Name Here" class="input-control">
+	        				</div>
+	        				<div class="right input-group">
+	        					<label>Email or Phone</label>
+	        					<input type="text" placeholder="Your Email or Phone Here" class="input-control">
+	        				</div>
+	        			</div>
+	        			<div class="row">
+	        				<div class="input-group">
+	        					<label>Message</label>
+	        					<textarea class="input-control" placeholder="Your Message Here"></textarea>
+	        				</div>
+	        			</div>
+	        			<div class="form-btn">
+	        				<button type="button" class="btn btn-01">Send Message</button>
+	        			</div>
+	        		</form>
+	        	</div>
+	        </div>
+			<div class="row">
+	        	<div class="contact-info">
+	        		<div class="row">
+	        			<!-- info item start -->
+	        			<div class="info-item">
+	        				<h5>Address</h5>
+	        				<p>2066 SEOBU-RO, JANGAN-GU, SUWON-SI, GYEONGGI-DO (16419)</p>
+	        			</div>
+	        			<!-- info item end -->
+	        			<!-- info item start -->
+	        			<div class="info-item">
+	        				<h5>Phone</h5>
+	        				<p>+82 010 3933 7258</p>
+	        			</div>
+	        			<!-- info item end -->
+	        			<!-- info item start -->
+	        			<div class="info-item">
+	        				<h5>Email</h5>
+	        				<p>ariaplay101@gmail.com</p>
+	        			</div>
+	        			<!-- info item end -->
+	        		</div>
+	        	</div>
+	        </div>
 
+	        <div class="row">
+	        	<div class="social-links">
+	        		<a href="#" title="facebook"><img src="{{ url_for('static', filename='img/icons/facebook.svg') }}" alt="facebook"></a>
+	        		<a href="#" title="twitter"><img src="{{ url_for('static', filename='img/icons/twitter.svg') }}" alt="twitter"></a>
+	        		<a href="#" title="linkedin"><img src="{{ url_for('static', filename='img/icons/linkedin.svg') }}" alt="linkedin"></a>
+	        		<a href="#" title="instagram"><img src="{{ url_for('static', filename='img/icons/instagram.svg') }}" alt="instagram"></a>
+	        	</div>
+	        </div>
+		</div>
+	</section>
+	<!-- Contact Section End -->
 	<script src="{{ url_for('static', filename='js/search.js') }}"></script>
 </body>
 </html>

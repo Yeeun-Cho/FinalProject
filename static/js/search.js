@@ -24,7 +24,8 @@ $('.search').on('keyup', function() {
             tbody.append($tr)
             $tr.click(function(e) {  // suggestion is clicked, move to chart
                 e.stopPropagation()
-                console.log($(this).children('.ticker'))
+                var ticker = $(this).children('.ticker').text()
+                location.replace('/chart?ticker=' + ticker)
             })
         }
     }
@@ -32,10 +33,11 @@ $('.search').on('keyup', function() {
 
 $('.search').focus(function() {
     suggestions.show()
-    suggestions.focus(function() {
+    suggestions.mouseover(function() {
+        console.log('Focus')
         suggestions.show();
     })
-    $('.search').focusout(function() {
+    suggestions.mouseout(function() {
         suggestions.hide()
     })
 })

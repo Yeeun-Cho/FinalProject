@@ -14,6 +14,7 @@
 				<div class="row justify-content-between align-items-center">
 					<div class="brand-name">
 						<a href="/">KRXView.</a>
+						<p>Beta 1.0.0</p>
 					</div>
 					<!-- Search -->
 					<div class="search-stock row align-items-center">
@@ -37,11 +38,11 @@
 					<nav class="nav">
 						<ul>
 							<li><a href="/#home-section">Home</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Market</a></li>
-							<li><a href="chart?ticker=005930">Chart</a></li>
-							<li><a href="#">Screener</a></li>
-							<li><a href="#">Contact</a></li>
+							<li><a href="/#about-section">About</a></li>
+							<!-- <li><a href="#">Market</a></li> -->
+							<li><a href="chart?ticker=005930.KS">Chart</a></li>
+							<!-- <li><a href="#">Screener</a></li> -->
+							<li><a href="/#contact-section">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -58,7 +59,7 @@
 						<div class="chart-option justify-content-between">
 							<div id="legend">
 								<div class="legend-content">
-									<h2 id="ticker">005930</h2>
+									<h2 id="ticker">005930.KS</h2>
 									<h4 id="date"></h4>
 								</div>
 								<ul>
@@ -71,13 +72,11 @@
 							<div class="timeframe">
 								<h4>Timeframe:</h4>
 								<ul>
-									<li><span id="interday">interday</span></li>
-									<li><span class="selected" id="daily">daily</span></li>
-									<li><span id="weekly">weekly</span></li>
-									<li><span id="monthly">monthly</span></li>
+									<li><span class="selected" id="1d">daily</span></li>
+									<li><span id="1wk">weekly</span></li>
+									<li><span id="1mo">monthly</span></li>
 								</ul>
 							</div>
-
 						</div>
 						<div class="chart-graph">
 							<div id="lightweight">
