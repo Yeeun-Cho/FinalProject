@@ -4,11 +4,9 @@ from flask import Flask, render_template, jsonify, request
 import requests
 # import exchange_calendars as xcals
 from datetime import datetime
-from stock import searchStock, allStockInfo
+from stock import allStockInfo
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///static/db/stock.db' # db path
-# db = SQLAlchemy(app)
 
 
 def _get_crumbs_and_cookies(ticker):
@@ -125,12 +123,6 @@ def stockData():
     doc = {'stock': stock}
     return jsonify(doc)
 
-@app.route('/search', methods=['post'])
-def search():
-    sub = request.form.get('sub')
-    search = searchStock(sub)
-    doc = {'search': search}
-    return jsonify(doc)
 
 @app.route('/info', methods=['post'])
 def info():

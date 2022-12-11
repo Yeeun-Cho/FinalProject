@@ -58,11 +58,15 @@ function searchStock(stock, sub) {
 }
 
 function make_bold(input, sub) {
-    var regexp_lower = new RegExp(sub.toLowerCase(), "g");
-    var regexp_upper = new RegExp(sub.toUpperCase(), "g");
-	lower = input.trim().replace(regexp_lower, "<b>" + sub.toLowerCase() + "</b>");
-    lower_upper = lower.trim().replace(regexp_upper, "<b>" + sub.toUpperCase() + "</b>");
-    return lower_upper
+    var regexp = new RegExp(sub, "gi");
+    const found = input.trim().match(regexp);
+    if (found) {
+        for (var i = 0; i < found.length; i++) {
+            console.log(i, input)
+            input = input.trim().replace(regexp, "<b>" + found[i] + "</b>");
+        }
+    }
+    return input
 }
 
 function getStocksInfo() {
