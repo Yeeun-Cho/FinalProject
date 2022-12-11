@@ -65,7 +65,12 @@ function graphTicker(ticker) {
                 listItems.each(function(idx, span) {
                     var price = $(span)
                     var id = price.attr('id')
-                    price.text(`${id}: ${ohlc[id]}`);
+                    if (ohlc[id] !== undefined) {
+                        price.text(`${id}: ${ohlc[id]}`);
+                    }
+                    else {
+                        price.text('');
+                    }
                 });
             };
 

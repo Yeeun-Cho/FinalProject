@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
 
 body {
 	margin: 0;
@@ -69,15 +70,20 @@ body, input, textarea, button {
 }
 
 .header .search-stock .search-content {
+	font-family: 'Oswald', sans-sans-serif;
+	letter-spacing: 1px;
 	margin-left: 10px;
 }
 
 .header .search-stock .search-content input {
 	width: 250px;
 	background-color: inherit;
+	font-family: inherit;
+	letter-spacing: inherit;
 	color: white;
 	font-weight: bold;
 	border: 0px;
+	cursor:pointer;
 }
 
 .header .search-stock .search-content input::placeholder {
@@ -90,22 +96,28 @@ body, input, textarea, button {
 }
 
 .header .search-stock .suggestions-box {
-	/* display: none; */
+	display: none;
 	max-width: 300px;
 	width: 300px;
 	background-color: grey;
 	border-radius: 10px;
 	color: white;
-	font-size: 11px;
+	font-size: 14px;
 	position: absolute;
 	left: 0px;
 	top: 40px;
 	padding: 0 10px;
 	margin: 0 10px;
+	cursor:pointer;
 }
 
-.header .search-stock .suggestions-box table thead tr td {
-	font-size: 15px;
+.suggestions-box th, .suggestions-box td {
+	border-bottom: 1px solid #444444;
+    padding: 5px;
+}
+
+.header .search-stock .suggestions-box thead tr td {
+	font-size: 11px;
 }
 
 .header .nav {

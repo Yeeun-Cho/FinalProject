@@ -5,16 +5,21 @@ from datetime import datetime
 import re  
 from time import mktime  
 from flask import Flask, render_template, jsonify, request
-# from pykrx import stock
+from flask_sqlalchemy import SQLAlchemy
 # from pykrx.website.krx.market.ticker import StockTicker
 import pandas as pd
 import numpy as np
 import time
 import requests
-import exchange_calendars as xcals
+# import exchange_calendars as xcals
 from datetime import datetime, timedelta
 import json
+from stock import searchStock, allStockInfo
+
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///static/db/stock.db' # db path
+# db = SQLAlchemy(app)
+
 
 def _get_crumbs_and_cookies(ticker):
     """
@@ -113,6 +118,19 @@ def stockData():
     # df = stock.get_market_ohlcv(ticker, fromdate='1990-01-01', todate=today)
     stock = list(map(modifyStock, stock))
     doc = {'stock': stock}
+    return jsonify(doc)
+
+@app.route('/search', methods=['post'])
+def search():
+    sub = request.form.get('sub')
+    search = searchStock(sub)
+    doc = {'search': search}
+    return jsonify(doc)
+
+@app.route('/info', methods=['post'])
+def info():
+    allStocks = allStockInfo()
+    doc = {'allStocks': allStocks}
     return jsonify(doc)
     
 if __name__ == '__main__':

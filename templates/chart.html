@@ -21,7 +21,17 @@
 							<img src="{{ url_for('static', filename='img/icons/search.svg') }}" alt="Search">
 						</div>
 						<form class="search-content">
-							<input type="text" placeholder="Search ticker, company or profile" class="" autocomplete="off" autocorrect="off" autocapitalize="off" value="">
+							<input type="text" placeholder="Search ticker, company or profile" class="search" autocomplete="off" autocorrect="off" autocapitalize="off" value="">
+							<table class="suggestions-box">
+								<thead>
+									<tr>
+										<td>ticker</td>
+										<td>company</td>
+									</tr>
+								</thead>
+								<tbody id="tbody">
+								</tbody>
+							</table>
 						</form>
 					</div>
 					<nav class="nav">
@@ -79,5 +89,6 @@
 		<!-- Home Section End -->
 
 		<script src="{{ url_for('static', filename='js/ChartPage.js') }}" type="text/javascript" charset="utf-8"></script>
+		<script src="{{ url_for('static', filename='js/search.js') }}"></script>
 	</body>
 </html>

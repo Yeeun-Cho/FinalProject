@@ -65,6 +65,7 @@ body, input, textarea, button {
 	width: 300px;
 	padding: 2px 10px;
 	border-radius: 10px;
+	position: relative;
 }
 
 .header .search-stock .search-img img {
@@ -72,15 +73,20 @@ body, input, textarea, button {
 }
 
 .header .search-stock .search-content {
+	font-family: 'Oswald', sans-sans-serif;
+	letter-spacing: 1px;
 	margin-left: 10px;
 }
 
 .header .search-stock .search-content input {
 	width: 250px;
 	background-color: inherit;
+	font-family: inherit;
+	letter-spacing: inherit;
 	color: white;
 	font-weight: bold;
 	border: 0px;
+	cursor:pointer;
 }
 
 .header .search-stock .search-content input::placeholder {
@@ -90,6 +96,35 @@ body, input, textarea, button {
 
 .header .search-stock .search-content input:focus {
 	outline: none;
+}
+
+.header .search-stock .suggestions-box {
+	/* display: none; */
+	max-width: 300px;
+	width: 300px;
+	background-color: grey;
+	border-radius: 10px;
+	color: white;
+	font-size: 14px;
+	position: absolute;
+	left: 0px;
+	top: 40px;
+	padding: 0 10px;
+	margin: 0 10px;
+	cursor:pointer;
+}
+
+.suggestions-box th, .suggestions-box td {
+	border-bottom: 1px solid #444444;
+    padding: 5px;
+}
+
+.header .search-stock .suggestions-box thead tr td {
+	font-size: 11px;
+}
+
+.header .search-stock .suggestions-box tbody tr:hover {
+	background-color: lightblue;
 }
 
 .header .nav {
@@ -154,7 +189,8 @@ body, input, textarea, button {
 
 .chart-section .chart-option #legend ul li {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 10px;
+	width: 100px;
 }
 
 .chart-section .chart-option #legend ul li span {
@@ -202,4 +238,9 @@ body, input, textarea, button {
 	max-height: 500px;
 	width: 1000px;
 	height: 500px;
+}
+
+.chart-section .chart-graph #lightweight .tv-lightweight-charts {
+	background-color: #d1d4dc;
+	padding: 2px;
 }
